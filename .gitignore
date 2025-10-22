@@ -1,0 +1,15 @@
+# Windows
+Thumbs.db
+*.bak
+
+# PowerShell / PS2EXE
+*.tmp
+[Bb]in/
+[Oo]bj/
+ 
+*.exe
+*.dll
+# Ignore specific build output if created later
+/bin/
+/obj/
+*/publish/
