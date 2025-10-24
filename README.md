@@ -66,7 +66,7 @@ Instantly open all your links in separate browser tabs.
 ## ⬇️ Download & Requirements
 
 📦 The latest optimized package is available for direct download:  
-👉 **[Download Link Opener v2.0.0](#)**
+👉 [Download Link Opener v2.0.0](https://github.com/Chan9001/LinkOpener/releases/tag/v2.0)
 
 **Requirements:**
 - Windows 10 / 11 (64-bit)
