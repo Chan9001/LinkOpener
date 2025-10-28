@@ -1,0 +1,478 @@
+<!DOCTYPE html>
+<html lang="sr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Link Opener v2.0.0 - Open Multiple URLs Instantly</title>
+    <meta name="description" content="Lightweight Windows desktop app for opening multiple URLs at once. Built with C# WPF, supports Chrome, Firefox, Edge, Brave, and Helium.">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Georgia', serif;
+            line-height: 1.8;
+            color: #1a1a1a;
+            background: #0a0a0a;
+        }
+
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+        }
+
+        header {
+            background: linear-gradient(165deg, #1a1a1a 0%, #2d2d2d 50%, #1a1a1a 100%);
+            padding: 80px 40px;
+            border-bottom: 1px solid #d4af37;
+            text-align: center;
+        }
+
+        .header-content {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .version {
+            color: #d4af37;
+            font-size: 0.9rem;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            margin-bottom: 20px;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+        }
+
+        h1 {
+            font-size: 3.5rem;
+            margin-bottom: 20px;
+            background: linear-gradient(135deg, #d4af37 0%, #f4d88a 50%, #d4af37 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            font-weight: 300;
+            letter-spacing: -1px;
+        }
+
+        .subtitle {
+            font-size: 1.2rem;
+            color: #b0b0b0;
+            font-weight: 300;
+            margin-bottom: 40px;
+        }
+
+        .download-section {
+            display: flex;
+            gap: 15px;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .btn {
+            padding: 14px 32px;
+            border: none;
+            font-size: 1rem;
+            cursor: pointer;
+            text-decoration: none;
+            display: inline-block;
+            transition: all 0.3s ease;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            letter-spacing: 0.5px;
+            border-radius: 6px;
+        }
+
+        .btn-gold {
+            background: linear-gradient(135deg, #d4af37 0%, #f4d88a 100%);
+            color: #0a0a0a;
+            font-weight: 600;
+        }
+
+        .btn-gold:hover {
+            background: linear-gradient(135deg, #f4d88a 0%, #d4af37 100%);
+            transform: translateY(-2px);
+        }
+
+        .btn-outline {
+            background: transparent;
+            color: #d4af37;
+            border: 1px solid #d4af37;
+        }
+
+        .btn-outline:hover {
+            background: rgba(212, 175, 55, 0.1);
+        }
+
+        .main {
+            background: #ffffff;
+            padding: 80px 40px;
+        }
+
+        .section {
+            max-width: 900px;
+            margin: 0 auto 80px;
+        }
+
+        h2 {
+            font-size: 2rem;
+            color: #1a1a1a;
+            margin-bottom: 30px;
+            font-weight: 300;
+            position: relative;
+            padding-bottom: 15px;
+        }
+
+        h2:after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 60px;
+            height: 1px;
+            background: #d4af37;
+        }
+
+        .screenshot {
+            margin: 60px 0;
+            text-align: center;
+        }
+
+        .screenshot img {
+            max-width: 100%;
+            border: 1px solid #e0e0e0;
+            border-radius: 8px;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 40px;
+            margin-top: 50px;
+        }
+
+        .feature {
+            padding: 30px;
+            background: #fafafa;
+            border-left: 2px solid #d4af37;
+            border-radius: 4px;
+        }
+
+        .feature h3 {
+            font-size: 1.1rem;
+            color: #1a1a1a;
+            margin-bottom: 12px;
+            font-weight: 600;
+        }
+
+        .feature p {
+            color: #666;
+            font-size: 0.95rem;
+            line-height: 1.6;
+        }
+
+        .steps {
+            margin-top: 50px;
+        }
+
+        .step {
+            display: flex;
+            gap: 30px;
+            margin-bottom: 40px;
+            align-items: flex-start;
+        }
+
+        .step-number {
+            font-size: 2rem;
+            color: #d4af37;
+            font-weight: 300;
+            min-width: 50px;
+        }
+
+        .step h3 {
+            font-size: 1.2rem;
+            margin-bottom: 10px;
+            font-weight: 600;
+        }
+
+        .step p {
+            color: #666;
+            margin-bottom: 15px;
+        }
+
+        .code {
+            background: #1a1a1a;
+            color: #d4af37;
+            padding: 20px;
+            font-family: 'Courier New', monospace;
+            font-size: 0.9rem;
+            border-left: 2px solid #d4af37;
+            border-radius: 4px;
+        }
+
+        .tech-table {
+            width: 100%;
+            margin-top: 40px;
+            border-collapse: collapse;
+            font-size: 0.85rem;
+        }
+
+        .tech-table tr {
+            border-bottom: 1px solid #f0f0f0;
+        }
+
+        .tech-table td {
+            padding: 12px 0;
+            vertical-align: top;
+        }
+
+        .tech-table td:first-child {
+            font-weight: 600;
+            color: #666;
+            width: 160px;
+            font-size: 0.8rem;
+        }
+
+        .tech-table td:last-child {
+            color: #999;
+            font-size: 0.8rem;
+        }
+
+        .browsers {
+            display: flex;
+            gap: 30px;
+            margin: 40px 0;
+            font-size: 1.1rem;
+            color: #666;
+        }
+
+        .support {
+            background: linear-gradient(165deg, #1a1a1a 0%, #2d2d2d 100%);
+            padding: 80px 40px;
+            text-align: center;
+            border-top: 1px solid #d4af37;
+        }
+
+        .support h2 {
+            color: #d4af37;
+            text-align: center;
+            font-size: 2.5rem;
+        }
+
+        .support h2:after {
+            display: none;
+        }
+
+        .support p {
+            color: #b0b0b0;
+            font-size: 1.1rem;
+            margin: 20px 0 40px;
+        }
+
+        footer {
+            background: #0a0a0a;
+            padding: 40px;
+            text-align: center;
+            color: #666;
+            font-size: 0.9rem;
+        }
+
+        footer a {
+            color: #d4af37;
+            text-decoration: none;
+        }
+
+        ul {
+            list-style: none;
+            margin-top: 20px;
+        }
+
+        ul li {
+            padding: 8px 0;
+            color: #666;
+            position: relative;
+            padding-left: 25px;
+        }
+
+        ul li:before {
+            content: '—';
+            position: absolute;
+            left: 0;
+            color: #d4af37;
+        }
+
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2.5rem;
+            }
+            
+            .features-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .download-section {
+                flex-direction: column;
+                align-items: stretch;
+            }
+
+            .btn {
+                text-align: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="header-content">
+            <div class="version">Version 2.0.0</div>
+            <h1>Link Opener</h1>
+            <p class="subtitle">Open multiple URLs instantly. Elegantly simple, professionally powerful.</p>
+            <div class="download-section">
+                <a href="https://github.com/Chan9001/LinkOpener/releases/tag/v2.0" class="btn btn-gold" target="_blank">Download for Windows</a>
+                <a href="https://github.com/Chan9001/LinkOpener" class="btn btn-outline" target="_blank">View on GitHub</a>
+            </div>
+        </div>
+    </header>
+
+    <div class="main">
+        <div class="section">
+            <div class="screenshot">
+                <img src="assets/screenshot.png" alt="Link Opener Interface" onerror="this.style.display='none'">
+            </div>
+
+            <p style="font-size: 1.1rem; color: #666; line-height: 1.8;">Link Opener is a lightweight Windows desktop application designed for professionals who work with multiple URLs daily. Built with C# and WPF on .NET 8.0, it offers a clean interface to open dozens of links simultaneously across your preferred browser.</p>
+
+            <div class="browsers">
+                <span>Chrome</span>
+                <span>Firefox</span>
+                <span>Edge</span>
+                <span>Brave</span>
+                <span>Helium</span>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2>Features</h2>
+            <div class="features-grid">
+                <div class="feature">
+                    <h3>Modern Architecture</h3>
+                    <p>Rewritten in C# WPF for optimal Windows performance and stability</p>
+                </div>
+                <div class="feature">
+                    <h3>Multi-Browser Support</h3>
+                    <p>Compatible with Chrome, Firefox, Edge, Brave, and Helium browsers</p>
+                </div>
+                <div class="feature">
+                    <h3>Private Mode</h3>
+                    <p>Open all links in incognito or private browsing mode</p>
+                </div>
+                <div class="feature">
+                    <h3>Drag & Drop</h3>
+                    <p>Simply drag your text file into the window to load URLs</p>
+                </div>
+                <div class="feature">
+                    <h3>Persistent Settings</h3>
+                    <p>Remembers your browser preference and configuration</p>
+                </div>
+                <div class="feature">
+                    <h3>Lightweight</h3>
+                    <p>Minimal resource usage with fast link processing</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2>How to Use</h2>
+            <div class="steps">
+                <div class="step">
+                    <div class="step-number">01</div>
+                    <div>
+                        <h3>Prepare Your Links</h3>
+                        <p>Create a text file with one URL per line:</p>
+                        <div class="code">https://github.com<br>https://stackoverflow.com<br>https://news.ycombinator.com</div>
+                    </div>
+                </div>
+
+                <div class="step">
+                    <div class="step-number">02</div>
+                    <div>
+                        <h3>Launch Application</h3>
+                        <p>Run LinkOpener.exe from your installation directory</p>
+                    </div>
+                </div>
+
+                <div class="step">
+                    <div class="step-number">03</div>
+                    <div>
+                        <h3>Load File</h3>
+                        <p>Browse to your text file or drag and drop it into the window</p>
+                    </div>
+                </div>
+
+                <div class="step">
+                    <div class="step-number">04</div>
+                    <div>
+                        <h3>Configure & Open</h3>
+                        <p>Select your browser, toggle private mode if needed, and click Open</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2>Requirements</h2>
+            <ul>
+                <li>Windows 10 or Windows 11 (64-bit)</li>
+                <li>.NET 8.0 Desktop Runtime</li>
+            </ul>
+        </div>
+
+        <div class="section">
+            <h2>Technical Specifications</h2>
+            <table class="tech-table">
+                <tr>
+                    <td>Language</td>
+                    <td>C#</td>
+                </tr>
+                <tr>
+                    <td>Framework</td>
+                    <td>WPF / .NET 8.0</td>
+                </tr>
+                <tr>
+                    <td>Platform</td>
+                    <td>Windows 10 / 11 (64-bit)</td>
+                </tr>
+                <tr>
+                    <td>License</td>
+                    <td>MIT Open Source</td>
+                </tr>
+                <tr>
+                    <td>Supported Browsers</td>
+                    <td>Chrome, Firefox, Edge, Brave, Helium</td>
+                </tr>
+            </table>
+        </div>
+
+        <div class="section">
+            <h2>Why Link Opener</h2>
+            <ul>
+                <li>Save time by opening multiple websites simultaneously</li>
+                <li>Ideal for developers, researchers, marketers, and QA testers</li>
+                <li>Eliminate repetitive manual browser tasks</li>
+                <li>Maintain organized workflows with persistent settings</li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="support">
+        <h2>Support Development</h2>
+        <p>If Link Opener helps your workflow, consider supporting continued development</p>
+        <a href="https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=Q7NJC5CSRNF2Y" class="btn btn-gold" target="_blank">Donate via PayPal</a>
+    </div>
+
+    <footer>
+        <p>Created by HC • MIT License</p>
+        <p style="margin-top: 10px;"><a href="https://github.com/Chan9001/LinkOpener">github.com/Chan9001/LinkOpener</a></p>
+    </footer>
+</body>
+</html>
