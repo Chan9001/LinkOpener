@@ -116,21 +116,5 @@ Passionate about productivity tools, automation, and open-source development.
 
 ---
 
-## 💖 Support Development
-
-If you find **Link Opener** useful, please consider supporting its development:
-
-<div align="center" style="margin: 20px 0;">
-  <a href="https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=Q7NJC5CSRNF2Y" target="_blank" style="
-      display: inline-block;
-      padding: 10px 25px;
-      background-color: #00457C;
-      color: white;
-      text-decoration: none;
-      font-weight: bold;
-      border-radius: 4px;
-      box-shadow: 0 2px 4px rgba(0,0,0,0.2);
-  ">
-      ✨ DONATE via PayPal
   </a>
 </div>
